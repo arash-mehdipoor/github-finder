@@ -1,11 +1,13 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
+import GithubContext from '../../context/GithubContext';
 import { Link } from 'react-router-dom'
 
-const User = ({ getUser, match, user }) => {
+const User = ({ match }) => {
+    const githubContext = useContext(GithubContext);
 
     useEffect(() => {
-        getUser(match.params.login)
-    }, [getUser, match]);
+        githubContext.getUser(match.params.login)
+    }, [match]);
     const {
         name,
         company,
@@ -19,7 +21,7 @@ const User = ({ getUser, match, user }) => {
         following,
         public_repos,
         hireable
-    } = user;
+    } = githubContext.user;
     return (
         <Fragment>
             <Link to='/' className='btn btn-light'>

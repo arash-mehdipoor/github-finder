@@ -1,7 +1,8 @@
 import {
     SEARCH_USERS,
     SET_LOADING,
-    CLEAR_USER
+    CLEAR_USER,
+    GET_USER
 } from './types';
 
 const GithubReducer = (state, action) => {
@@ -21,6 +22,12 @@ const GithubReducer = (state, action) => {
             return {
                 ...state,
                 users: [],
+                loading: false
+            }
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload,
                 loading: false
             }
         default:
