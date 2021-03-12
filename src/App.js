@@ -7,6 +7,7 @@ import Search from './components/Users/Search';
 import User from './components/Users/User';
 import About from './components/About/about';
 import Alert from './components/Alert';
+import GithubState from './context/GithubState';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 
@@ -56,26 +57,28 @@ const App = () => {
   }
 
   return (
-    <Router>
-      <div>
-        <Navbar title="Github Finder" icon="fab fa-github" />
-        <Alert alert={alert} />
-        <Switch>
-          <Route path="/" exact render={props => (
-            <>
-              <Search searchUser={searchUser} setAlert={setAlert} clearUsers={clearUsers}
-                showClear={users.length > 0 ? true : false} />
-              <Users loading={loading} users={users} />
-            </>
-          )} />
-          <Route path="/about" component={About} />
-          <Route path="/user/:login" render={props => (
-            <User getUser={getUser} {...props} loading={loading} user={user} />
-          )} />
-        </Switch>
+    <GithubState>
+      <Router>
+        <div>
+          <Navbar title="Github Finder" icon="fab fa-github" />
+          <Alert alert={alert} />
+          <Switch>
+            <Route path="/" exact render={props => (
+              <>
+                <Search searchUser={searchUser} setAlert={setAlert} clearUsers={clearUsers}
+                  showClear={users.length > 0 ? true : false} />
+                <Users loading={loading} users={users} />
+              </>
+            )} />
+            <Route path="/about" component={About} />
+            <Route path="/user/:login" render={props => (
+              <User getUser={getUser} {...props} loading={loading} user={user} />
+            )} />
+          </Switch>
 
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </GithubState>
   )
 
 }
