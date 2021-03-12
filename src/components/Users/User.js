@@ -1,11 +1,11 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 const User = ({ getUser, match, user }) => {
 
     useEffect(() => {
         getUser(match.params.login)
-    }, []);
+    }, [getUser, match]);
     const {
         name,
         company,
@@ -18,7 +18,6 @@ const User = ({ getUser, match, user }) => {
         followers,
         following,
         public_repos,
-        public_gists,
         hireable
     } = user;
     return (

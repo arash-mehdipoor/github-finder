@@ -30,12 +30,7 @@ const App = () => {
   }, [])
 
 
-  const searchUser = async (text) => {
-    setloading(true);
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}`);
-    setUsers(res.data.items);
-    setloading(false);
-  }
+
   const clearUsers = () => {
     setUsers([]);
     setloading(false);
@@ -72,7 +67,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact render={props => (
               <>
-                <Search searchUser={searchUser} setAlert={setAlert} clearUsers={clearUsers}
+                <Search setAlert={setAlert} clearUsers={clearUsers}
                   showClear={users.length > 0 ? true : false} />
                 <Users loading={loading} users={users} />
               </>
@@ -86,6 +81,7 @@ const App = () => {
         </div>
       </Router>
     </GithubState>
+
   )
 
 }

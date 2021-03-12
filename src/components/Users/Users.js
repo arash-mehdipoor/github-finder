@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import UserItem from './UserItem';
 import PropTypes from 'prop-types'
+import GithubContext from '../../context/GithubContext';
 
+const Users = () => {
+    const githubContext = useContext(GithubContext);
 
-const Users = ({ users, loading }) => {
+    const { loading, users } = githubContext;
     if (loading) {
         return <h1>loading...</h1>
     } else {
