@@ -20,7 +20,8 @@ const App = () => {
 
   const showuserdom = async () => {
     setloading(true);
-    const res = await axios.get('https://api.github.com/users');
+    const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_CLIENT_ID}
+    &client_secret=${process.env.REACT_APP_CLIENT_SECRET}`);
     setUsers(res.data)
     setloading(false);
   }
@@ -50,8 +51,14 @@ const App = () => {
   }
 
   const getUser = async username => {
+
+
     setloading(true);
-    const res = await axios.get(`https://api.github.com/user/${username}`);
+    const res = await axios.get(`https://api.github.com/user/${username}?client_id=
+    ${process.env.REACT_APP_CLIENT_ID}
+    &client_secret=
+    ${process.env.REACT_APP_CLIENT_SECRET}`);
+
     setUser(res.data);
     setloading(false);
   }

@@ -17,16 +17,15 @@ const Search = ({ searchUser, clearUsers, showClear, setAlert }) => {
 
     return (
         <>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className='form'>
                 <input type="text" name="text" value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="search..." />
-                <input type="submit" />
+                <input type="submit" className='btn btn-dark btn-block' />
             </form>
             {
                 showClear &&
-                <button onClick={clearUsers}>Clear</button>
-
+                <button onClick={clearUsers} className='btn btn-light btn-block'>Clear</button>
             }
         </>
     )
