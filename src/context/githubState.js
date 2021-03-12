@@ -5,6 +5,7 @@ import GithubReducer from './GithubReducer';
 import {
     SEARCH_USERS,
     SET_LOADING,
+    CLEAR_USER
 } from './types';
 
 const GithubState = props => {
@@ -33,11 +34,16 @@ const GithubState = props => {
     // set loading
     const setLoading = () => dispatch({ type: SET_LOADING });
 
+    // clear user
+    const clearUser = () => dispatch({ type: CLEAR_USER });
+
+
     return <GithubContext.Provider value={{
         users: state.users,
         user: state.user,
         loading: state.loading,
-        searchUsers
+        searchUsers,
+        clearUser
     }}>
         {props.children}
     </GithubContext.Provider>

@@ -29,13 +29,6 @@ const App = () => {
     showuserdom();
   }, [])
 
-
-
-  const clearUsers = () => {
-    setUsers([]);
-    setloading(false);
-  }
-
   const setAlert = (msg, type) => {
     setalertfunc({
       alert: { msg, type }
@@ -67,8 +60,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact render={props => (
               <>
-                <Search setAlert={setAlert} clearUsers={clearUsers}
-                  showClear={users.length > 0 ? true : false} />
+                <Search setAlert={setAlert} />
                 <Users loading={loading} users={users} />
               </>
             )} />
